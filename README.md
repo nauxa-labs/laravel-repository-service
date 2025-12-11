@@ -1,12 +1,20 @@
 # Laravel Repository Service
 
+[![Tests](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml/badge.svg)](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PHP Version](https://img.shields.io/badge/php-%5E8.1-8892BF.svg)](https://www.php.net)
+[![Laravel Version](https://img.shields.io/badge/laravel-10.x%20%7C%2011.x-FF2D20.svg)](https://laravel.com)
+
 A flexible Repository and Service pattern implementation for Laravel applications.
 
-## Features
+## ✨ Features
 
-- **Flexible Service Pattern**: `ServiceContract` and `BaseService` are intentionally empty, allowing you to define methods with any signature
-- **Standard Repository Pattern**: `RepositoryContract` and `EloquentRepository` provide standard CRUD operations
-- **Laravel Integration**: Auto-discovery support via Service Provider
+- 🎯 **Flexible Service Pattern**: `ServiceContract` and `BaseService` are intentionally empty, allowing you to define methods with any signature
+- 📦 **Standard Repository Pattern**: `RepositoryContract` and `EloquentRepository` provide standard CRUD operations
+- 🚀 **Artisan Commands**: Generate repositories and services with `make:repository` and `make:service`
+- 🔍 **Enhanced Query Methods**: `findWhere()`, `findWhereIn()`, `paginate()`, `with()`, `firstOrCreate()`
+- ⚡ **Laravel Integration**: Auto-discovery support via Service Provider
+- ✅ **Fully Tested**: Comprehensive test suite with PHPUnit
 
 ## Requirements
 
@@ -15,47 +23,33 @@ A flexible Repository and Service pattern implementation for Laravel application
 
 ## Installation
 
-### Option 1: Install from GitHub (Private Repository)
-
-Add the repository to your `composer.json`:
-
-```json
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/refinaldy/laravel-repository-service"
-        }
-    ],
-    "require": {
-        "refinaldy/laravel-repository-service": "dev-main"
-    }
-}
+```bash
+composer require refinaldy/laravel-repository-service
 ```
 
-Then run:
+The package will be auto-discovered by Laravel. No additional configuration needed.
+
+## Quick Start
+
+### Generate a Repository
 
 ```bash
-composer update refinaldy/laravel-repository-service
+php artisan make:repository User
 ```
 
-### Option 2: Install from Local Path
+This creates:
+- `app/Repositories/UserRepository.php` (interface)
+- `app/Repositories/UserRepositoryImplement.php` (implementation)
 
-If the package is in a local folder:
+### Generate a Service
 
-```json
-{
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./packages/refinaldy/laravel-repository-service"
-        }
-    ],
-    "require": {
-        "refinaldy/laravel-repository-service": "*"
-    }
-}
+```bash
+php artisan make:service User
 ```
+
+This creates:
+- `app/Services/UserService.php` (interface)
+- `app/Services/UserServiceImplement.php` (implementation)
 
 ## Usage
 
@@ -64,7 +58,7 @@ If the package is in a local folder:
 ```php
 <?php
 
-namespace App\Services\User;
+namespace App\Services;
 
 use Refinaldy\RepositoryService\Contracts\ServiceContract;
 
@@ -79,7 +73,7 @@ interface UserService extends ServiceContract
 ```php
 <?php
 
-namespace App\Services\User;
+namespace App\Services;
 
 use Refinaldy\RepositoryService\Abstracts\BaseService;
 
@@ -106,7 +100,7 @@ class UserServiceImplement extends BaseService implements UserService
 ```php
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories;
 
 use Refinaldy\RepositoryService\Contracts\RepositoryContract;
 
@@ -120,7 +114,7 @@ interface UserRepository extends RepositoryContract
 ```php
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories;
 
 use App\Models\User;
 use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
@@ -134,28 +128,65 @@ class UserRepositoryImplement extends EloquentRepository implements UserReposito
 
     public function findByEmail(string $email): ?User
     {
-        return $this->model->where('email', $email)->first();
+        return $this->findWhere(['email' => $email])->first();
     }
 }
 ```
 
 ## Available Methods
 
-### EloquentRepository (CRUD)
+### EloquentRepository
 
 | Method | Description |
 |--------|-------------|
 | `find($id)` | Find a record by ID |
 | `findOrFail($id)` | Find a record by ID or throw exception |
+| `findWhere(array $conditions)` | Find records matching conditions |
+| `findWhereIn(string $column, array $values)` | Find records where column is in values |
 | `all()` | Get all records |
+| `paginate(int $perPage = 15)` | Paginate results |
 | `create(array $attributes)` | Create a new record |
+| `firstOrCreate(array $attributes, array $values = [])` | First or create pattern |
 | `update($id, array $attributes)` | Update a record |
 | `delete($id)` | Delete a record |
 | `destroy(array $ids)` | Delete multiple records |
+| `with(array\|string $relations)` | Set eager loading relations |
+
+### Eager Loading Example
+
+```php
+// Load users with their posts
+$users = $this->userRepository->with(['posts', 'profile'])->all();
+
+// Or chain with other methods
+$users = $this->userRepository->with('posts')->paginate(10);
+```
 
 ### BaseService
 
 Empty by design - define your own methods!
+
+## Publishing Stubs
+
+You can publish the stubs to customize the generated code:
+
+```bash
+php artisan vendor:publish --tag=repository-service-stubs
+```
+
+## Testing
+
+```bash
+composer test
+```
+
+## Contributing
+
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## Changelog
+
+Please see [CHANGELOG.md](CHANGELOG.md) for a list of changes.
 
 ## License
 
