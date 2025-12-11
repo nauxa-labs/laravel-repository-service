@@ -166,6 +166,23 @@ $users = $this->userRepository->with('posts')->paginate(10);
 
 Empty by design - define your own methods!
 
+## Configuration
+
+Publish the config to customize generator paths:
+
+```bash
+php artisan vendor:publish --tag=repository-service-config
+```
+
+Customize paths in `config/repository-service.php`:
+
+```php
+'paths' => [
+    'repositories' => 'Repositories',  // or 'Domain/User/Repositories'
+    'services' => 'Services',
+],
+```
+
 ## Publishing Stubs
 
 You can publish the stubs to customize the generated code:

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2024-12-11
+
+### Added
+- **Configuration File**: Publish `repository-service.php` to customize generator paths
+- Commands now read paths from config (`repository-service.paths.repositories`, `repository-service.paths.services`)
+
+### Changed
+- Updated `RepositoryServiceProvider` to merge and publish config
+
 ## [2.0.0] - 2024-12-11
 
 ### Added
