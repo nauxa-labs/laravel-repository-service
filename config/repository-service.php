@@ -31,4 +31,23 @@ return [
         'interface' => '',
         'implementation' => 'Implement',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Auto-Binding
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, the package will automatically bind repository and service
+    | interfaces to their implementations. This eliminates the need to manually
+    | register bindings in your AppServiceProvider.
+    |
+    | Note: Manual bindings in your AppServiceProvider will always take priority.
+    |
+    */
+
+    'auto_binding' => [
+        'enabled' => false,  // Set to true to enable auto-binding
+        'repositories' => true,
+        'services' => true,
+    ],
 ];
