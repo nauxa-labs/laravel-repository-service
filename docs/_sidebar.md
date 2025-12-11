@@ -1,4 +1,4 @@
-- [Home](/)
+- [Home](README.md)
 - [Installation](installation.md)
 - [Quick Start](quick-start.md)
 - **Guide**
