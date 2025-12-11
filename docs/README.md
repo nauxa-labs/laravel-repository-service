@@ -1,0 +1,58 @@
+# Laravel Repository Service
+
+> A flexible Repository and Service pattern implementation for Laravel applications.
+
+[![Tests](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml/badge.svg)](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PHP Version](https://img.shields.io/badge/php-%5E8.1-8892BF.svg)](https://www.php.net)
+[![Laravel Version](https://img.shields.io/badge/laravel-10.x%20%7C%2011.x-FF2D20.svg)](https://laravel.com)
+
+## ✨ Features
+
+- 🎯 **Flexible Service Pattern** - Define methods with any signature
+- 📦 **Standard Repository Pattern** - Complete CRUD operations
+- 🚀 **Artisan Commands** - `make:repository` and `make:service`
+- 🔍 **Enhanced Query Methods** - `findWhere()`, `paginate()`, `with()`
+- ⚡ **Laravel Integration** - Auto-discovery via Service Provider
+- ✅ **Fully Tested** - Comprehensive PHPUnit test suite
+
+## Quick Install
+
+```bash
+composer require refinaldy/laravel-repository-service
+```
+
+## Quick Example
+
+```bash
+# Generate repository
+php artisan make:repository User
+
+# Generate service
+php artisan make:service User
+```
+
+```php
+// Use in your controller
+class UserController extends Controller
+{
+    public function __construct(
+        protected UserRepository $userRepository
+    ) {}
+
+    public function index()
+    {
+        return $this->userRepository->paginate(15);
+    }
+
+    public function show($id)
+    {
+        return $this->userRepository->with('posts')->findOrFail($id);
+    }
+}
+```
+
+## Requirements
+
+- PHP ^8.1
+- Laravel ^10.0 or ^11.0
