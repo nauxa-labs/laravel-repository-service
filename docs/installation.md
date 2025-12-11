@@ -46,6 +46,30 @@ Options:
   -f, --force          Create the class even if the repository already exists
 ```
 
+## Publishing Config (Optional)
+
+Publish the config to customize generator paths:
+
+```bash
+php artisan vendor:publish --tag=repository-service-config
+```
+
+This creates `config/repository-service.php` where you can customize:
+
+```php
+return [
+    'paths' => [
+        'repositories' => 'Repositories',  // or 'Domain/User/Repositories'
+        'services' => 'Services',
+        'models' => 'Models',
+    ],
+    'suffixes' => [
+        'interface' => '',
+        'implementation' => 'Implement',
+    ],
+];
+```
+
 ## Publishing Stubs (Optional)
 
 Customize the generated code by publishing stubs:

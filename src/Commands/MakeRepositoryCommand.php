@@ -184,7 +184,9 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Repositories';
+        $path = config('repository-service.paths.repositories', 'Repositories');
+
+        return $rootNamespace . '\\' . str_replace('/', '\\', $path);
     }
 
     /**
