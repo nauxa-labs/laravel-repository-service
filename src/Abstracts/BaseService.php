@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Abstracts;
+namespace Nauxa\RepositoryService\Abstracts;
 
-use Refinaldy\RepositoryService\Contracts\ServiceContract;
+use Nauxa\RepositoryService\Contracts\ServiceContract;
 
 /**
  * Base Service Abstract Class
@@ -24,7 +24,7 @@ use Refinaldy\RepositoryService\Contracts\ServiceContract;
  * }
  * ```
  *
- * @package Refinaldy\RepositoryService
+ * @package Nauxa\RepositoryService
  */
 abstract class BaseService implements ServiceContract
 {

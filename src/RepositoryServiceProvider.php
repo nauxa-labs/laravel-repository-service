@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService;
+namespace Nauxa\RepositoryService;
 
 use Illuminate\Support\ServiceProvider;
-use Refinaldy\RepositoryService\Commands\MakeRepositoryCommand;
-use Refinaldy\RepositoryService\Commands\MakeServiceCommand;
+use Nauxa\RepositoryService\Commands\MakeRepositoryCommand;
+use Nauxa\RepositoryService\Commands\MakeServiceCommand;
 
 /**
  * Repository Service Provider
  *
  * Handles the registration and bootstrapping of the repository service package.
  *
- * @package Refinaldy\RepositoryService
+ * @package Nauxa\RepositoryService
  */
 class RepositoryServiceProvider extends ServiceProvider
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
-use Refinaldy\RepositoryService\Abstracts\BaseService;
+use Nauxa\RepositoryService\Abstracts\BaseService;
 
 class {{ class }} extends BaseService implements {{ interfaceName }}
 {

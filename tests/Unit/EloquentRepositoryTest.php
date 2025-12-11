@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Tests\Unit;
+namespace Nauxa\RepositoryService\Tests\Unit;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
-use Refinaldy\RepositoryService\Contracts\RepositoryContract;
-use Refinaldy\RepositoryService\Tests\TestCase;
+use Nauxa\RepositoryService\Abstracts\EloquentRepository;
+use Nauxa\RepositoryService\Contracts\RepositoryContract;
+use Nauxa\RepositoryService\Tests\TestCase;
 
 class EloquentRepositoryTest extends TestCase
 {

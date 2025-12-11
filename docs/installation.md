@@ -8,7 +8,7 @@
 ## Install via Composer
 
 ```bash
-composer require refinaldy/laravel-repository-service
+composer require nauxa-labs/laravel-repository-service
 ```
 
 The package will be **auto-discovered** by Laravel. No additional configuration needed.
@@ -20,7 +20,7 @@ If auto-discovery is disabled, add the service provider to `config/app.php`:
 ```php
 'providers' => [
     // ...
-    Refinaldy\RepositoryService\RepositoryServiceProvider::class,
+    Nauxa\RepositoryService\RepositoryServiceProvider::class,
 ],
 ```
 

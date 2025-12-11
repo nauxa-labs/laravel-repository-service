@@ -5,7 +5,7 @@ Get up and running in 5 minutes!
 ## Step 1: Install Package
 
 ```bash
-composer require refinaldy/laravel-repository-service
+composer require nauxa-labs/laravel-repository-service
 ```
 
 ## Step 2: Generate Repository
@@ -22,7 +22,7 @@ This creates two files:
 
 namespace App\Repositories;
 
-use Refinaldy\RepositoryService\Contracts\RepositoryContract;
+use Nauxa\RepositoryService\Contracts\RepositoryContract;
 
 interface UserRepository extends RepositoryContract
 {
@@ -37,7 +37,7 @@ interface UserRepository extends RepositoryContract
 namespace App\Repositories;
 
 use App\Models\User;
-use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
+use Nauxa\RepositoryService\Abstracts\EloquentRepository;
 
 class UserRepositoryImplement extends EloquentRepository implements UserRepository
 {

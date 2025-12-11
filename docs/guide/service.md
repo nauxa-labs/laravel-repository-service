@@ -18,7 +18,7 @@ php artisan make:service User
 
 namespace App\Services;
 
-use Refinaldy\RepositoryService\Contracts\ServiceContract;
+use Nauxa\RepositoryService\Contracts\ServiceContract;
 
 interface UserService extends ServiceContract
 {
@@ -35,7 +35,7 @@ interface UserService extends ServiceContract
 namespace App\Services;
 
 use App\Repositories\UserRepository;
-use Refinaldy\RepositoryService\Abstracts\BaseService;
+use Nauxa\RepositoryService\Abstracts\BaseService;
 
 class UserServiceImplement extends BaseService implements UserService
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
-use Refinaldy\RepositoryService\Contracts\ServiceContract;
+use Nauxa\RepositoryService\Contracts\ServiceContract;
 
 interface {{ class }} extends ServiceContract
 {

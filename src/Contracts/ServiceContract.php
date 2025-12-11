@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Contracts;
+namespace Nauxa\RepositoryService\Contracts;
 
 /**
  * Service Contract Interface
@@ -11,7 +11,7 @@ namespace Refinaldy\RepositoryService\Contracts;
  * Services can define their own method signatures without being constrained
  * by a parent interface's method definitions.
  *
- * @package Refinaldy\RepositoryService
+ * @package Nauxa\RepositoryService
  */
 interface ServiceContract
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Commands;
+namespace Nauxa\RepositoryService\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Attribute\AsCommand;

@@ -1,5 +1,5 @@
 {
-  "name": "refinaldy/laravel-repository-service",
+  "name": "nauxa-labs/laravel-repository-service",
   "description": "A flexible Repository and Service pattern implementation for Laravel applications",
   "keywords": [
     "laravel",
@@ -12,8 +12,8 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Refinaldy",
-      "email": "refinaldy@example.com"
+      "name": "Nauxa Labs",
+      "email": "hello@nauxa.dev"
     }
   ],
   "require": {
@@ -28,12 +28,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Refinaldy\\RepositoryService\\": "src/"
+      "Nauxa\\RepositoryService\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Refinaldy\\RepositoryService\\Tests\\": "tests/"
+      "Nauxa\\RepositoryService\\Tests\\": "tests/"
     }
   },
   "scripts": {
@@ -43,7 +43,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Refinaldy\\RepositoryService\\RepositoryServiceProvider"
+        "Nauxa\\RepositoryService\\RepositoryServiceProvider"
       ]
     }
   },

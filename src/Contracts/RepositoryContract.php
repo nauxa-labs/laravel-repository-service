@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Contracts;
+namespace Nauxa\RepositoryService\Contracts;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * All repository classes should implement this interface to ensure
  * consistent data access patterns across the application.
  *
- * @package Refinaldy\RepositoryService
+ * @package Nauxa\RepositoryService
  */
 interface RepositoryContract
 {

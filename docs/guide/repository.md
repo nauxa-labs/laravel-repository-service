@@ -23,7 +23,7 @@ php artisan make:repository User --model=User
 
 namespace App\Repositories;
 
-use Refinaldy\RepositoryService\Contracts\RepositoryContract;
+use Nauxa\RepositoryService\Contracts\RepositoryContract;
 
 interface UserRepository extends RepositoryContract
 {
@@ -39,7 +39,7 @@ interface UserRepository extends RepositoryContract
 namespace App\Repositories;
 
 use App\Models\User;
-use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
+use Nauxa\RepositoryService\Abstracts\EloquentRepository;
 
 class UserRepositoryImplement extends EloquentRepository implements UserRepository
 {

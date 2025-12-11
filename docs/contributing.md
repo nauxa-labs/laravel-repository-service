@@ -10,7 +10,7 @@ Please be respectful and considerate in all interactions.
 
 ### Reporting Bugs
 
-1. Check existing [Issues](https://github.com/refinaldy/laravel-repository-service/issues)
+1. Check existing [Issues](https://github.com/nauxa-labs/laravel-repository-service/issues)
 2. Create a new issue with:
    - Clear, descriptive title
    - Steps to reproduce

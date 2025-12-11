@@ -19,7 +19,7 @@
 ## Quick Install
 
 ```bash
-composer require refinaldy/laravel-repository-service
+composer require nauxa-labs/laravel-repository-service
 ```
 
 ## Quick Example

@@ -19,7 +19,7 @@ The base service interface.
 ```php
 <?php
 
-namespace Refinaldy\RepositoryService\Contracts;
+namespace Nauxa\RepositoryService\Contracts;
 
 interface ServiceContract
 {
@@ -34,7 +34,7 @@ The abstract base service class.
 ```php
 <?php
 
-namespace Refinaldy\RepositoryService\Abstracts;
+namespace Nauxa\RepositoryService\Abstracts;
 
 abstract class BaseService implements ServiceContract
 {

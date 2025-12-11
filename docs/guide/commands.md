@@ -117,7 +117,7 @@ stubs/
 namespace {{ namespace }};
 
 use App\Models\{{ model }};
-use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
+use Nauxa\RepositoryService\Abstracts\EloquentRepository;
 
 class {{ class }} extends EloquentRepository implements {{ interfaceName }}
 {

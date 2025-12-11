@@ -1,6 +1,6 @@
 # Laravel Repository Service
 
-[![Tests](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml/badge.svg)](https://github.com/refinaldy/laravel-repository-service/actions/workflows/tests.yml)
+[![Tests](https://github.com/nauxa-labs/laravel-repository-service/actions/workflows/tests.yml/badge.svg)](https://github.com/nauxa-labs/laravel-repository-service/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![PHP Version](https://img.shields.io/badge/php-%5E8.1-8892BF.svg)](https://www.php.net)
 [![Laravel Version](https://img.shields.io/badge/laravel-10.x%20%7C%2011.x-FF2D20.svg)](https://laravel.com)
@@ -24,7 +24,7 @@ A flexible Repository and Service pattern implementation for Laravel application
 ## Installation
 
 ```bash
-composer require refinaldy/laravel-repository-service
+composer require nauxa-labs/laravel-repository-service
 ```
 
 The package will be auto-discovered by Laravel. No additional configuration needed.
@@ -60,7 +60,7 @@ This creates:
 
 namespace App\Services;
 
-use Refinaldy\RepositoryService\Contracts\ServiceContract;
+use Nauxa\RepositoryService\Contracts\ServiceContract;
 
 interface UserService extends ServiceContract
 {
@@ -75,7 +75,7 @@ interface UserService extends ServiceContract
 
 namespace App\Services;
 
-use Refinaldy\RepositoryService\Abstracts\BaseService;
+use Nauxa\RepositoryService\Abstracts\BaseService;
 
 class UserServiceImplement extends BaseService implements UserService
 {
@@ -102,7 +102,7 @@ class UserServiceImplement extends BaseService implements UserService
 
 namespace App\Repositories;
 
-use Refinaldy\RepositoryService\Contracts\RepositoryContract;
+use Nauxa\RepositoryService\Contracts\RepositoryContract;
 
 interface UserRepository extends RepositoryContract
 {
@@ -117,7 +117,7 @@ interface UserRepository extends RepositoryContract
 namespace App\Repositories;
 
 use App\Models\User;
-use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
+use Nauxa\RepositoryService\Abstracts\EloquentRepository;
 
 class UserRepositoryImplement extends EloquentRepository implements UserRepository
 {

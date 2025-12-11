@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Refinaldy\RepositoryService\Tests;
+namespace Nauxa\RepositoryService\Tests;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Refinaldy\RepositoryService\RepositoryServiceProvider;
+use Nauxa\RepositoryService\RepositoryServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
