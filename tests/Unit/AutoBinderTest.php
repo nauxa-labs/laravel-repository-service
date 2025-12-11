@@ -39,6 +39,25 @@ class AutoBinderTest extends TestCase
     }
 
     /** @test */
+    public function testSanitizePathHandlesComplexTraversal(): void
+    {
+        $reflection = new ReflectionClass($this->autoBinder);
+        $method = $reflection->getMethod('sanitizePath');
+        $method->setAccessible(true);
+
+        // Test complex traversal attempts that might bypass simple string replacement
+        // "....//" -> remove ".." -> "//" -> "/" -> trimmed -> ""
+        $this->assertEquals('', $method->invoke($this->autoBinder, '....//'));
+        
+        // "..././" -> reduces to safe empty string or safe path
+        // Actual logic sequence aggressively reduces this to empty
+        $this->assertEquals('', $method->invoke($this->autoBinder, '..././'));
+
+        // "..//../" -> remove "../" -> "..//" -> remove ".." -> "//" -> ""
+        $this->assertEquals('', $method->invoke($this->autoBinder, '..//../'));
+    }
+
+    /** @test */
     public function testSanitizePathNormalizesSlashes(): void
     {
         $reflection = new ReflectionClass($this->autoBinder);
