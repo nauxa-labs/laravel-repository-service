@@ -48,7 +48,7 @@ class AutoBinderTest extends TestCase
         // Test complex traversal attempts that might bypass simple string replacement
         // "....//" -> remove ".." -> "//" -> "/" -> trimmed -> ""
         $this->assertEquals('', $method->invoke($this->autoBinder, '....//'));
-        
+
         // "..././" -> reduces to safe empty string or safe path
         // Actual logic sequence aggressively reduces this to empty
         $this->assertEquals('', $method->invoke($this->autoBinder, '..././'));
