@@ -70,6 +70,31 @@ return [
 ];
 ```
 
+## Auto-Binding (Optional)
+
+Enable automatic binding of repository and service interfaces:
+
+```php
+// config/repository-service.php
+'auto_binding' => [
+    'enabled' => true,  // Enable auto-binding
+    'repositories' => true,
+    'services' => true,
+],
+```
+
+With auto-binding enabled, you don't need to register bindings manually:
+
+```php
+// ❌ No longer needed in AppServiceProvider
+$this->app->bind(UserRepository::class, UserRepositoryImplement::class);
+
+// ✅ Just inject and use!
+public function __construct(UserRepository $userRepository) {}
+```
+
+> **Note:** Manual bindings always take priority over auto-bindings.
+
 ## Publishing Stubs (Optional)
 
 Customize the generated code by publishing stubs:
