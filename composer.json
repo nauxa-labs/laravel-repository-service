@@ -23,6 +23,7 @@
     "illuminate/support": "^10.0|^11.0"
   },
   "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.64",
     "orchestra/testbench": "^8.0|^9.0",
     "phpunit/phpunit": "^10.0|^11.0"
   },
@@ -38,7 +39,9 @@
   },
   "scripts": {
     "test": "vendor/bin/phpunit",
-    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+    "cs-check": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+    "cs-fix": "vendor/bin/php-cs-fixer fix"
   },
   "extra": {
     "laravel": {

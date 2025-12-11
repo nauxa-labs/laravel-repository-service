@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Nauxa\RepositoryService\Tests\Unit;
 
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\File;
 use Nauxa\RepositoryService\Support\AutoBinder;
 use Nauxa\RepositoryService\Tests\TestCase;
 use ReflectionClass;
+use stdClass;
 
 class AutoBinderTest extends TestCase
 {
@@ -78,7 +78,7 @@ class AutoBinderTest extends TestCase
         // Create a test repository directory
         $repoPath = $this->app->path('TestRepositories');
         File::makeDirectory($repoPath, 0755, true, true);
-        
+
         try {
             File::put($repoPath . '/TestRepository.php', $this->getInterfaceStub('TestRepositories', 'TestRepository'));
             File::put($repoPath . '/TestRepositoryImplement.php', $this->getImplementStub('TestRepositories', 'TestRepository'));
@@ -128,7 +128,7 @@ class AutoBinderTest extends TestCase
     {
         // Create a manual binding first
         $this->app->bind('App\\Repositories\\ManualRepository', function () {
-            return new \stdClass();
+            return new stdClass();
         });
 
         // Verify the manual binding exists
@@ -150,7 +150,7 @@ class AutoBinderTest extends TestCase
 
             // Manual binding should still return our stdClass
             $resolved = $this->app->make('App\\Repositories\\ManualRepository');
-            $this->assertInstanceOf(\stdClass::class, $resolved);
+            $this->assertInstanceOf(stdClass::class, $resolved);
         } finally {
             File::deleteDirectory($repoPath);
         }
@@ -164,7 +164,7 @@ class AutoBinderTest extends TestCase
 
         // This should NOT throw an exception
         $this->autoBinder->bindRepositories();
-        
+
         // Just verify no exception was thrown
         $this->assertTrue(true);
     }

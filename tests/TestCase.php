@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Nauxa\RepositoryService\Tests;
 
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Nauxa\RepositoryService\RepositoryServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {

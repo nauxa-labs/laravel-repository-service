@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Nauxa\RepositoryService\Contracts\RepositoryContract;
 
 /**
- * Eloquent Repository Abstract Class
+ * Eloquent Repository Abstract Class.
  *
  * Provides a base implementation for repository pattern using Eloquent ORM.
  * Extend this class and define the $model property to use standard CRUD operations.
@@ -28,8 +28,6 @@ use Nauxa\RepositoryService\Contracts\RepositoryContract;
  *     }
  * }
  * ```
- *
- * @package Nauxa\RepositoryService
  */
 abstract class EloquentRepository implements RepositoryContract
 {
@@ -184,7 +182,7 @@ abstract class EloquentRepository implements RepositoryContract
     {
         $query = $this->model->newQuery();
 
-        if (!empty($this->with)) {
+        if (! empty($this->with)) {
             $query->with($this->with);
         }
 

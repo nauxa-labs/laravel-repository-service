@@ -242,16 +242,17 @@ class EloquentRepositoryTest extends TestCase
 }
 
 /**
- * Test User Model
+ * Test User Model.
  */
 class TestUser extends Model
 {
     protected $table = 'test_users';
+
     protected $guarded = [];
 }
 
 /**
- * Test User Repository
+ * Test User Repository.
  */
 class TestUserRepository extends EloquentRepository
 {

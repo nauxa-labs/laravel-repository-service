@@ -62,8 +62,9 @@ class MakeServiceCommand extends GeneratorCommand
         $interfaceName = $this->qualifyClass($name);
         $path = $this->getPath($interfaceName);
 
-        if (!$this->option('force') && $this->alreadyExists($name)) {
+        if (! $this->option('force') && $this->alreadyExists($name)) {
             $this->components->error("Service interface [{$name}] already exists.");
+
             return false;
         }
 
@@ -85,8 +86,9 @@ class MakeServiceCommand extends GeneratorCommand
         $implementName = $this->qualifyClass($name . 'Implement');
         $path = $this->getPath($implementName);
 
-        if (!$this->option('force') && $this->files->exists($path)) {
+        if (! $this->option('force') && $this->files->exists($path)) {
             $this->components->error("Service implementation [{$name}Implement] already exists.");
+
             return false;
         }
 

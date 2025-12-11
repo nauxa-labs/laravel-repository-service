@@ -6,15 +6,12 @@ namespace Nauxa\RepositoryService\Support;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 use Throwable;
 
 /**
- * Auto-Binder Support Class
+ * Auto-Binder Support Class.
  *
  * Automatically binds repository and service interfaces to their implementations.
- *
- * @package Nauxa\RepositoryService
  */
 class AutoBinder
 {
@@ -49,7 +46,7 @@ class AutoBinder
      */
     public function bindRepositories(): void
     {
-        if (!config('repository-service.auto_binding.repositories', true)) {
+        if (! config('repository-service.auto_binding.repositories', true)) {
             return;
         }
 
@@ -64,7 +61,7 @@ class AutoBinder
      */
     public function bindServices(): void
     {
-        if (!config('repository-service.auto_binding.services', true)) {
+        if (! config('repository-service.auto_binding.services', true)) {
             return;
         }
 
@@ -82,19 +79,19 @@ class AutoBinder
     {
         // Sanitize path to prevent directory traversal
         $sanitizedPath = $this->sanitizePath($relativePath);
-        
+
         if ($sanitizedPath === null) {
             return;
         }
 
         $basePath = $this->app->path($sanitizedPath);
 
-        if (!File::isDirectory($basePath)) {
+        if (! File::isDirectory($basePath)) {
             return;
         }
 
         $suffix = config('repository-service.suffixes.implementation', 'Implement');
-        
+
         // Use allFiles to scan subdirectories recursively
         $files = File::allFiles($basePath);
 
@@ -113,7 +110,7 @@ class AutoBinder
             // Calculate relative path from base for nested directories
             $relativeDir = $file->getRelativePath();
             $namespacePath = $sanitizedPath;
-            
+
             if ($relativeDir !== '') {
                 $namespacePath .= '/' . $relativeDir;
             }
@@ -136,21 +133,21 @@ class AutoBinder
     {
         // Remove any directory traversal attempts
         $sanitized = str_replace(['../', '..\\', '..'], '', $path);
-        
+
         // Normalize slashes
         $sanitized = str_replace('\\', '/', $sanitized);
-        
+
         // Remove leading/trailing slashes
         $sanitized = trim($sanitized, '/');
-        
+
         // Validate path doesn't escape app directory
         $fullPath = $this->app->path($sanitized);
         $appPath = $this->app->path();
-        
-        if (!str_starts_with(realpath($fullPath) ?: $fullPath, realpath($appPath) ?: $appPath)) {
+
+        if (! str_starts_with(realpath($fullPath) ?: $fullPath, realpath($appPath) ?: $appPath)) {
             return null;
         }
-        
+
         return $sanitized;
     }
 
@@ -168,7 +165,7 @@ class AutoBinder
             if (
                 interface_exists($interface) &&
                 class_exists($implementation) &&
-                !$this->app->bound($interface)
+                ! $this->app->bound($interface)
             ) {
                 $this->app->bind($interface, $implementation);
             }
@@ -177,4 +174,3 @@ class AutoBinder
         }
     }
 }
-
