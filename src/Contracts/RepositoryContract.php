@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Repository Contract Interface
+ * Repository Contract Interface.
  *
  * Defines the standard CRUD operations for repository implementations.
  * All repository classes should implement this interface to ensure
  * consistent data access patterns across the application.
- *
- * @package Nauxa\RepositoryService
  */
 interface RepositoryContract
 {

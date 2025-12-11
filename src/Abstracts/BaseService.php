@@ -7,7 +7,7 @@ namespace Nauxa\RepositoryService\Abstracts;
 use Nauxa\RepositoryService\Contracts\ServiceContract;
 
 /**
- * Base Service Abstract Class
+ * Base Service Abstract Class.
  *
  * This abstract class is intentionally left empty to provide maximum flexibility.
  * Extend this class in your service implementations and define your own methods
@@ -23,8 +23,6 @@ use Nauxa\RepositoryService\Contracts\ServiceContract;
  *     }
  * }
  * ```
- *
- * @package Nauxa\RepositoryService
  */
 abstract class BaseService implements ServiceContract
 {

@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Nauxa\RepositoryService\Contracts;
 
 /**
- * Service Contract Interface
+ * Service Contract Interface.
  *
  * This interface is intentionally left empty to provide maximum flexibility.
  * Services can define their own method signatures without being constrained
  * by a parent interface's method definitions.
- *
- * @package Nauxa\RepositoryService
  */
 interface ServiceContract
 {

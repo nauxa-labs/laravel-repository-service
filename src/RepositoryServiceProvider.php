@@ -10,11 +10,9 @@ use Nauxa\RepositoryService\Commands\MakeServiceCommand;
 use Nauxa\RepositoryService\Support\AutoBinder;
 
 /**
- * Repository Service Provider
+ * Repository Service Provider.
  *
  * Handles the registration and bootstrapping of the repository service package.
- *
- * @package Nauxa\RepositoryService
  */
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -63,7 +61,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     protected function registerAutoBindings(): void
     {
-        if (!config('repository-service.auto_binding.enabled', false)) {
+        if (! config('repository-service.auto_binding.enabled', false)) {
             return;
         }
 
