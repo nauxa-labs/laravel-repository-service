@@ -6,7 +6,8 @@ namespace Nauxa\RepositoryService\Support;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\File;
-use ReflectionClass;
+use Illuminate\Support\Str;
+use Throwable;
 
 /**
  * Auto-Binder Support Class
@@ -19,9 +20,26 @@ class AutoBinder
 {
     protected Application $app;
 
+    protected string $appNamespace;
+
     public function __construct(Application $app)
     {
         $this->app = $app;
+        $this->appNamespace = $this->getAppNamespace();
+    }
+
+    /**
+     * Get the application namespace.
+     *
+     * @return string
+     */
+    protected function getAppNamespace(): string
+    {
+        try {
+            return $this->app->getNamespace();
+        } catch (Throwable) {
+            return 'App\\';
+        }
     }
 
     /**
@@ -62,14 +80,23 @@ class AutoBinder
      */
     protected function bindFromPath(string $relativePath): void
     {
-        $basePath = $this->app->path(str_replace('\\', '/', $relativePath));
+        // Sanitize path to prevent directory traversal
+        $sanitizedPath = $this->sanitizePath($relativePath);
+        
+        if ($sanitizedPath === null) {
+            return;
+        }
+
+        $basePath = $this->app->path($sanitizedPath);
 
         if (!File::isDirectory($basePath)) {
             return;
         }
 
         $suffix = config('repository-service.suffixes.implementation', 'Implement');
-        $files = File::files($basePath);
+        
+        // Use allFiles to scan subdirectories recursively
+        $files = File::allFiles($basePath);
 
         foreach ($files as $file) {
             if ($file->getExtension() !== 'php') {
@@ -83,10 +110,60 @@ class AutoBinder
                 continue;
             }
 
-            $namespace = 'App\\' . str_replace('/', '\\', $relativePath);
+            // Calculate relative path from base for nested directories
+            $relativeDir = $file->getRelativePath();
+            $namespacePath = $sanitizedPath;
+            
+            if ($relativeDir !== '') {
+                $namespacePath .= '/' . $relativeDir;
+            }
+
+            $namespace = rtrim($this->appNamespace, '\\') . '\\' . str_replace('/', '\\', $namespacePath);
             $interface = $namespace . '\\' . $className;
             $implementation = $namespace . '\\' . $className . $suffix;
 
+            $this->tryBind($interface, $implementation);
+        }
+    }
+
+    /**
+     * Sanitize path to prevent directory traversal attacks.
+     *
+     * @param string $path
+     * @return string|null
+     */
+    protected function sanitizePath(string $path): ?string
+    {
+        // Remove any directory traversal attempts
+        $sanitized = str_replace(['../', '..\\', '..'], '', $path);
+        
+        // Normalize slashes
+        $sanitized = str_replace('\\', '/', $sanitized);
+        
+        // Remove leading/trailing slashes
+        $sanitized = trim($sanitized, '/');
+        
+        // Validate path doesn't escape app directory
+        $fullPath = $this->app->path($sanitized);
+        $appPath = $this->app->path();
+        
+        if (!str_starts_with(realpath($fullPath) ?: $fullPath, realpath($appPath) ?: $appPath)) {
+            return null;
+        }
+        
+        return $sanitized;
+    }
+
+    /**
+     * Attempt to bind interface to implementation with error handling.
+     *
+     * @param string $interface
+     * @param string $implementation
+     * @return void
+     */
+    protected function tryBind(string $interface, string $implementation): void
+    {
+        try {
             // Only bind if both classes exist and not already bound
             if (
                 interface_exists($interface) &&
@@ -95,6 +172,9 @@ class AutoBinder
             ) {
                 $this->app->bind($interface, $implementation);
             }
+        } catch (Throwable) {
+            // Silently ignore binding errors to prevent app crashes
         }
     }
 }
+
