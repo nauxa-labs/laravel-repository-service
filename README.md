@@ -183,6 +183,19 @@ Customize paths in `config/repository-service.php`:
 ],
 ```
 
+## Auto-Binding
+
+Enable automatic binding to skip manual registration:
+
+```php
+// config/repository-service.php
+'auto_binding' => [
+    'enabled' => true,
+],
+```
+
+Now just inject and use - no `AppServiceProvider` binding needed!
+
 ## Publishing Stubs
 
 You can publish the stubs to customize the generated code:

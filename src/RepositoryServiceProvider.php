@@ -7,6 +7,7 @@ namespace Nauxa\RepositoryService;
 use Illuminate\Support\ServiceProvider;
 use Nauxa\RepositoryService\Commands\MakeRepositoryCommand;
 use Nauxa\RepositoryService\Commands\MakeServiceCommand;
+use Nauxa\RepositoryService\Support\AutoBinder;
 
 /**
  * Repository Service Provider
@@ -28,6 +29,8 @@ class RepositoryServiceProvider extends ServiceProvider
             __DIR__ . '/../config/repository-service.php',
             'repository-service'
         );
+
+        $this->registerAutoBindings();
     }
 
     /**
@@ -52,5 +55,20 @@ class RepositoryServiceProvider extends ServiceProvider
             ], 'repository-service-stubs');
         }
     }
-}
 
+    /**
+     * Register auto-bindings if enabled.
+     *
+     * @return void
+     */
+    protected function registerAutoBindings(): void
+    {
+        if (!config('repository-service.auto_binding.enabled', false)) {
+            return;
+        }
+
+        $autoBinder = new AutoBinder($this->app);
+        $autoBinder->bindRepositories();
+        $autoBinder->bindServices();
+    }
+}

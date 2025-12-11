@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2024-12-11
+
+### Added
+- **Auto-Binding**: Automatically bind repository/service interfaces to implementations
+- New `AutoBinder` class in `Support` namespace
+- `auto_binding.enabled` config option (off by default for backward compatibility)
+
+### Changed
+- `RepositoryServiceProvider` now calls `registerAutoBindings()` when enabled
+
 ## [2.1.0] - 2024-12-11
 
 ### Added
