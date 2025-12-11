@@ -1,0 +1,38 @@
+{
+  "name": "refinaldy/laravel-repository-service",
+  "description": "A flexible Repository and Service pattern implementation for Laravel applications",
+  "keywords": [
+    "laravel",
+    "repository",
+    "service",
+    "pattern",
+    "eloquent"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Refinaldy",
+      "email": "refinaldy@example.com"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "illuminate/database": "^10.0|^11.0",
+    "illuminate/support": "^10.0|^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Refinaldy\\RepositoryService\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Refinaldy\\RepositoryService\\RepositoryServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
