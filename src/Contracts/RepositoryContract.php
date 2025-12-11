@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Refinaldy\RepositoryService\Contracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,11 +37,37 @@ interface RepositoryContract
     public function findOrFail(int|string $id): Model;
 
     /**
+     * Find records matching the given conditions.
+     *
+     * @param array<string, mixed> $conditions Key-value pairs of conditions
+     * @return Collection
+     */
+    public function findWhere(array $conditions): Collection;
+
+    /**
+     * Find records where column value is in the given array.
+     *
+     * @param string $column The column name
+     * @param array $values The values to match
+     * @return Collection
+     */
+    public function findWhereIn(string $column, array $values): Collection;
+
+    /**
      * Retrieve all records from the repository.
      *
      * @return Collection
      */
     public function all(): Collection;
+
+    /**
+     * Paginate the repository results.
+     *
+     * @param int $perPage Number of records per page
+     * @param array $columns Columns to select
+     * @return LengthAwarePaginator
+     */
+    public function paginate(int $perPage = 15, array $columns = ['*']): LengthAwarePaginator;
 
     /**
      * Create a new record in the repository.
@@ -49,6 +76,15 @@ interface RepositoryContract
      * @return Model
      */
     public function create(array $attributes): Model;
+
+    /**
+     * Get the first record matching the attributes or create it.
+     *
+     * @param array $attributes The attributes to search for
+     * @param array $values Additional values to include if creating
+     * @return Model
+     */
+    public function firstOrCreate(array $attributes, array $values = []): Model;
 
     /**
      * Update an existing record by its primary key.
@@ -74,4 +110,12 @@ interface RepositoryContract
      * @return int Number of deleted records
      */
     public function destroy(array $ids): int;
+
+    /**
+     * Set the relationships to eager load.
+     *
+     * @param array|string $relations The relationships to load
+     * @return static
+     */
+    public function with(array|string $relations): static;
 }

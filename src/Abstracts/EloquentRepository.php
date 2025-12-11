@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Refinaldy\RepositoryService\Abstracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Refinaldy\RepositoryService\Contracts\RepositoryContract;
@@ -39,11 +41,18 @@ abstract class EloquentRepository implements RepositoryContract
     protected Model $model;
 
     /**
+     * The relationships to eager load.
+     *
+     * @var array
+     */
+    protected array $with = [];
+
+    /**
      * {@inheritdoc}
      */
     public function find(int|string $id): ?Model
     {
-        return $this->model->newQuery()->find($id);
+        return $this->newQuery()->find($id);
     }
 
     /**
@@ -51,7 +60,23 @@ abstract class EloquentRepository implements RepositoryContract
      */
     public function findOrFail(int|string $id): Model
     {
-        return $this->model->newQuery()->findOrFail($id);
+        return $this->newQuery()->findOrFail($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findWhere(array $conditions): Collection
+    {
+        return $this->newQuery()->where($conditions)->get();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findWhereIn(string $column, array $values): Collection
+    {
+        return $this->newQuery()->whereIn($column, $values)->get();
     }
 
     /**
@@ -59,7 +84,15 @@ abstract class EloquentRepository implements RepositoryContract
      */
     public function all(): Collection
     {
-        return $this->model->newQuery()->get();
+        return $this->newQuery()->get();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function paginate(int $perPage = 15, array $columns = ['*']): LengthAwarePaginator
+    {
+        return $this->newQuery()->paginate($perPage, $columns);
     }
 
     /**
@@ -68,6 +101,14 @@ abstract class EloquentRepository implements RepositoryContract
     public function create(array $attributes): Model
     {
         return $this->model->newQuery()->create($attributes);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function firstOrCreate(array $attributes, array $values = []): Model
+    {
+        return $this->newQuery()->firstOrCreate($attributes, $values);
     }
 
     /**
@@ -102,6 +143,16 @@ abstract class EloquentRepository implements RepositoryContract
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function with(array|string $relations): static
+    {
+        $this->with = is_array($relations) ? $relations : func_get_args();
+
+        return $this;
+    }
+
+    /**
      * Get the underlying Eloquent model instance.
      *
      * @return Model
@@ -120,6 +171,34 @@ abstract class EloquentRepository implements RepositoryContract
     public function setModel(Model $model): static
     {
         $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Create a new query builder instance with eager loading.
+     *
+     * @return Builder
+     */
+    protected function newQuery(): Builder
+    {
+        $query = $this->model->newQuery();
+
+        if (!empty($this->with)) {
+            $query->with($this->with);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Reset the eager loading relationships.
+     *
+     * @return static
+     */
+    public function resetWith(): static
+    {
+        $this->with = [];
 
         return $this;
     }
