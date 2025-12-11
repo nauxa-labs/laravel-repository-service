@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Refinaldy\RepositoryService;
 
 use Illuminate\Support\ServiceProvider;
+use Refinaldy\RepositoryService\Commands\MakeRepositoryCommand;
+use Refinaldy\RepositoryService\Commands\MakeServiceCommand;
 
 /**
  * Repository Service Provider
@@ -32,6 +34,15 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Package bootstrapping logic can be added here
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeRepositoryCommand::class,
+                MakeServiceCommand::class,
+            ]);
+
+            $this->publishes([
+                __DIR__ . '/../stubs' => $this->app->basePath('stubs'),
+            ], 'repository-service-stubs');
+        }
     }
 }

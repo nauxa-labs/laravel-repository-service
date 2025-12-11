@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }};
+
+use App\Models\{{ model }};
+use Refinaldy\RepositoryService\Abstracts\EloquentRepository;
+
+class {{ class }} extends EloquentRepository implements {{ interfaceName }}
+{
+    public function __construct({{ model }} $model)
+    {
+        $this->model = $model;
+    }
+}
