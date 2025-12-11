@@ -24,7 +24,10 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Package registration logic can be added here
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/repository-service.php',
+            'repository-service'
+        );
     }
 
     /**
@@ -41,8 +44,13 @@ class RepositoryServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([
+                __DIR__ . '/../config/repository-service.php' => $this->app->configPath('repository-service.php'),
+            ], 'repository-service-config');
+
+            $this->publishes([
                 __DIR__ . '/../stubs' => $this->app->basePath('stubs'),
             ], 'repository-service-stubs');
         }
     }
 }
+
