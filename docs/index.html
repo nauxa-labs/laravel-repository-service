@@ -12,25 +12,28 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
     rel="stylesheet">
 
   <!-- Docsify Theme -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
 
   <style>
+    /* ============================================
+       LIGHT MODE (Default) - Tailwind/Nuxt Style
+       ============================================ */
     :root {
-      /* Colors */
+      /* Colors - Soft & Warm */
       --theme-color: #FF2D20;
-      --base-background-color: #fafafa;
-      --cover-background-color: #fafafa;
+      --base-background-color: #ffffff;
+      --cover-background-color: #ffffff;
 
       /* Sidebar */
       --sidebar-width: 280px;
-      --sidebar-background: #ffffff;
+      --sidebar-background: #f8fafc;
       --sidebar-border-width: 0;
       --sidebar-padding: 0;
-      --sidebar-nav-link-color: #374151;
+      --sidebar-nav-link-color: #475569;
       --sidebar-nav-link-color--active: #FF2D20;
       --sidebar-nav-link-font-weight: 500;
       --sidebar-nav-link-font-weight--active: 600;
@@ -38,31 +41,31 @@
       --sidebar-nav-link-border-width: 0 0 0 3px;
       --sidebar-nav-link-border-color: transparent;
       --sidebar-nav-link-border-color--active: #FF2D20;
-      --sidebar-nav-strong-color: #1f2937;
+      --sidebar-nav-strong-color: #1e293b;
       --sidebar-nav-strong-font-weight: 600;
       --sidebar-name-font-size: 1.1rem;
       --sidebar-name-font-weight: 700;
-      --sidebar-name-color: #1f2937;
+      --sidebar-name-color: #1e293b;
 
       /* Content */
       --content-max-width: 900px;
       --base-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --base-font-size: 16px;
       --base-line-height: 1.7;
-      --base-color: #374151;
-      --heading-color: #111827;
+      --base-color: #475569;
+      --heading-color: #0f172a;
       --heading-font-weight: 600;
 
-      /* Code */
-      --code-font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      /* Code - Warm, soft like Tailwind */
+      --code-font-family: 'Fira Code', 'Menlo', monospace;
       --code-font-size: 0.875em;
-      --code-inline-background: #f3f4f6;
-      --code-inline-color: #be185d;
+      --code-inline-background: #f1f5f9;
+      --code-inline-color: #c026d3;
       --code-inline-padding: 2px 6px;
       --code-inline-border-radius: 4px;
-      --code-block-border-radius: 8px;
+      --code-block-border-radius: 12px;
       --code-block-padding: 20px 24px;
-      --code-block-background: #1e293b;
+      --code-block-background: #f8fafc;
 
       /* Links */
       --link-color: #FF2D20;
@@ -72,38 +75,107 @@
       /* Search */
       --search-input-border-radius: 8px;
       --search-input-border-width: 1px;
-      --search-input-border-color: #e5e7eb;
+      --search-input-border-color: #e2e8f0;
       --search-input-background: #ffffff;
-      --search-input-placeholder-color: #9ca3af;
-
-      /* Cover */
-      --cover-max-width: 50em;
+      --search-input-placeholder-color: #94a3b8;
     }
 
-    /* Reset white space */
+    /* ============================================
+       DARK MODE - Developer Friendly
+       ============================================ */
+    [data-theme="dark"] {
+      --base-background-color: #0f172a;
+      --sidebar-background: #1e293b;
+      --sidebar-nav-link-color: #94a3b8;
+      --sidebar-nav-link-color--active: #FF2D20;
+      --sidebar-nav-strong-color: #e2e8f0;
+      --sidebar-name-color: #f1f5f9;
+      --base-color: #cbd5e1;
+      --heading-color: #f1f5f9;
+      --code-inline-background: #334155;
+      --code-inline-color: #f472b6;
+      --code-block-background: #1e293b;
+      --search-input-border-color: #334155;
+      --search-input-background: #1e293b;
+      --search-input-placeholder-color: #64748b;
+    }
+
+    [data-theme="dark"] body {
+      background: #0f172a;
+    }
+
+    [data-theme="dark"] .sidebar {
+      background: #1e293b;
+      border-right: 1px solid #334155;
+    }
+
+    [data-theme="dark"] .content {
+      background: #0f172a;
+    }
+
+    [data-theme="dark"] .markdown-section h1 {
+      border-bottom-color: #334155;
+    }
+
+    [data-theme="dark"] .markdown-section th,
+    [data-theme="dark"] .markdown-section td {
+      border-color: #334155;
+    }
+
+    [data-theme="dark"] .markdown-section th {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .markdown-section tr:hover td {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .markdown-section blockquote {
+      background: #1e293b;
+      border-left-color: #FF2D20;
+    }
+
+    [data-theme="dark"] .markdown-section blockquote p {
+      color: #fca5a5;
+    }
+
+    [data-theme="dark"] .sidebar .search input {
+      background: #1e293b;
+      border-color: #334155;
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .markdown-section pre {
+      background: #1e293b !important;
+      border: 1px solid #334155;
+    }
+
+    [data-theme="dark"] .markdown-section pre code {
+      color: #e2e8f0;
+    }
+
+    /* ============================================
+       BASE STYLES
+       ============================================ */
     * {
       box-sizing: border-box;
     }
 
     body {
       background: var(--base-background-color);
+      transition: background 0.3s ease;
     }
 
-    /* Sidebar styling */
+    /* Sidebar */
     .sidebar {
       background: var(--sidebar-background);
-      box-shadow: 1px 0 0 #e5e7eb;
+      border-right: 1px solid #e2e8f0;
       padding-top: 20px !important;
-    }
-
-    .sidebar>h1 {
-      padding: 0 24px;
-      margin: 0 0 20px 0;
+      transition: all 0.3s ease;
     }
 
     .sidebar .app-name {
       padding: 0 24px 20px;
-      border-bottom: 1px solid #e5e7eb;
       margin-bottom: 16px;
     }
 
@@ -115,10 +187,11 @@
     .sidebar .search input {
       width: 100%;
       padding: 10px 14px;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e2e8f0;
       border-radius: 8px;
       font-size: 14px;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #ffffff;
+      transition: all 0.2s;
     }
 
     .sidebar .search input:focus {
@@ -131,41 +204,31 @@
       padding: 0 !important;
     }
 
-    .sidebar-nav>ul>li {
-      margin: 0;
-    }
-
     .sidebar-nav>ul>li>a {
       display: block;
       padding: 10px 24px;
-      color: #374151;
-      font-weight: 500;
       transition: all 0.15s;
     }
 
     .sidebar-nav>ul>li>a:hover {
       color: #FF2D20;
-      background: #fef2f2;
+      background: rgba(255, 45, 32, 0.05);
     }
 
     .sidebar-nav>ul>li>a.active {
       color: #FF2D20;
-      background: #fef2f2;
+      background: rgba(255, 45, 32, 0.08);
       border-left: 3px solid #FF2D20;
     }
 
     .sidebar-nav>ul>li>p {
-      padding: 12px 24px 8px;
+      padding: 16px 24px 8px;
       margin: 8px 0 0 0;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #9ca3af;
-    }
-
-    .sidebar-nav ul ul {
-      padding-left: 0 !important;
+      color: #94a3b8;
     }
 
     .sidebar-nav ul ul a {
@@ -173,9 +236,11 @@
       font-size: 14px;
     }
 
-    /* Content area */
+    /* Content */
     .content {
       padding: 40px 60px 60px !important;
+      background: var(--base-background-color);
+      transition: background 0.3s ease;
     }
 
     .markdown-section {
@@ -187,7 +252,7 @@
       font-size: 2.25rem;
       margin: 0 0 1.5rem 0;
       padding-bottom: 0.75rem;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e2e8f0;
     }
 
     .markdown-section h2 {
@@ -204,28 +269,140 @@
       margin: 0 0 1rem 0;
     }
 
-    /* Code blocks */
+    /* Code Blocks - Soft, Warm Style */
     .markdown-section pre {
-      background: #1e293b !important;
-      border-radius: 8px;
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
       padding: 20px 24px;
       overflow-x: auto;
       margin: 1.5rem 0;
+      transition: all 0.3s ease;
     }
 
     .markdown-section pre code {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Fira Code', monospace;
       font-size: 14px;
       line-height: 1.6;
+      color: #334155;
+    }
+
+    /* Syntax Highlighting - Warm palette */
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+      color: #94a3b8;
+    }
+
+    .token.punctuation {
+      color: #64748b;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol {
+      color: #059669;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin {
+      color: #0891b2;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .language-css .token.string,
+    .style .token.string {
+      color: #d97706;
+    }
+
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword {
+      color: #c026d3;
+    }
+
+    .token.function,
+    .token.class-name {
+      color: #dc2626;
+    }
+
+    .token.regex,
+    .token.important,
+    .token.variable {
+      color: #ea580c;
+    }
+
+    /* Dark mode syntax */
+    [data-theme="dark"] .token.comment,
+    [data-theme="dark"] .token.prolog,
+    [data-theme="dark"] .token.doctype,
+    [data-theme="dark"] .token.cdata {
+      color: #64748b;
+    }
+
+    [data-theme="dark"] .token.punctuation {
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .token.property,
+    [data-theme="dark"] .token.tag,
+    [data-theme="dark"] .token.boolean,
+    [data-theme="dark"] .token.number,
+    [data-theme="dark"] .token.constant,
+    [data-theme="dark"] .token.symbol {
+      color: #34d399;
+    }
+
+    [data-theme="dark"] .token.selector,
+    [data-theme="dark"] .token.attr-name,
+    [data-theme="dark"] .token.string,
+    [data-theme="dark"] .token.char,
+    [data-theme="dark"] .token.builtin {
+      color: #22d3d1;
+    }
+
+    [data-theme="dark"] .token.operator,
+    [data-theme="dark"] .token.entity,
+    [data-theme="dark"] .token.url {
+      color: #fbbf24;
+    }
+
+    [data-theme="dark"] .token.atrule,
+    [data-theme="dark"] .token.attr-value,
+    [data-theme="dark"] .token.keyword {
+      color: #f472b6;
+    }
+
+    [data-theme="dark"] .token.function,
+    [data-theme="dark"] .token.class-name {
+      color: #fb7185;
+    }
+
+    [data-theme="dark"] .markdown-section pre code {
       color: #e2e8f0;
     }
 
+    /* Inline code */
     .markdown-section code:not([class*="lang-"]):not([class*="language-"]) {
-      background: #f3f4f6;
-      color: #be185d;
+      background: #f1f5f9;
+      color: #c026d3;
       padding: 2px 8px;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 0.875em;
+    }
+
+    [data-theme="dark"] .markdown-section code:not([class*="lang-"]):not([class*="language-"]) {
+      background: #334155;
+      color: #f472b6;
     }
 
     /* Tables */
@@ -233,23 +410,25 @@
       width: 100%;
       border-collapse: collapse;
       margin: 1.5rem 0;
+      border-radius: 12px;
+      overflow: hidden;
     }
 
     .markdown-section th,
     .markdown-section td {
       padding: 12px 16px;
       text-align: left;
-      border: 1px solid #e5e7eb;
+      border: 1px solid #e2e8f0;
     }
 
     .markdown-section th {
-      background: #f9fafb;
+      background: #f8fafc;
       font-weight: 600;
-      color: #374151;
+      color: #334155;
     }
 
     .markdown-section tr:hover td {
-      background: #f9fafb;
+      background: #f8fafc;
     }
 
     /* Blockquotes */
@@ -258,7 +437,7 @@
       background: #fef2f2;
       margin: 1.5rem 0;
       padding: 16px 24px;
-      border-radius: 0 8px 8px 0;
+      border-radius: 0 12px 12px 0;
     }
 
     .markdown-section blockquote p {
@@ -266,14 +445,41 @@
       color: #991b1b;
     }
 
-    /* GitHub corner */
-    .github-corner {
+    /* Dark mode toggle button */
+    .theme-toggle {
       position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 10;
+      top: 16px;
+      right: 80px;
+      z-index: 100;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
+    .theme-toggle:hover {
+      background: #e2e8f0;
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: #334155;
+      border-color: #475569;
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .theme-toggle:hover {
+      background: #475569;
+    }
+
+    /* GitHub corner */
     .github-corner svg {
       fill: #FF2D20;
       color: #fff;
@@ -281,14 +487,18 @@
 
     /* Copy button */
     .docsify-copy-code-button {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      background: #334155 !important;
-      color: #94a3b8 !important;
+      font-size: 12px !important;
+      padding: 4px 10px !important;
+      border-radius: 6px !important;
+      background: #e2e8f0 !important;
+      color: #475569 !important;
     }
 
     .docsify-copy-code-button:hover {
+      background: #cbd5e1 !important;
+    }
+
+    [data-theme="dark"] .docsify-copy-code-button {
       background: #475569 !important;
       color: #e2e8f0 !important;
     }
@@ -302,9 +512,15 @@
       .markdown-section h1 {
         font-size: 1.75rem;
       }
+
+      .theme-toggle {
+        right: 60px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
     }
 
-    /* Remove empty white space */
+    /* Fix spacing */
     main {
       margin: 0 !important;
     }
@@ -313,12 +529,52 @@
       background: #ffffff;
       border-radius: 0 8px 8px 0;
     }
+
+    [data-theme="dark"] .sidebar-toggle {
+      background: #1e293b;
+    }
   </style>
 </head>
 
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">
+    <span id="theme-icon">🌙</span>
+    <span id="theme-text">Dark</span>
+  </button>
+
   <div id="app"></div>
+
   <script>
+    // Theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+
+      if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById('theme-text').textContent = 'Dark';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-text').textContent = 'Light';
+      }
+    }
+
+    // Load saved theme
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.addEventListener('DOMContentLoaded', function () {
+          document.getElementById('theme-icon').textContent = '☀️';
+          document.getElementById('theme-text').textContent = 'Light';
+        });
+      }
+    })();
+
     window.$docsify = {
       name: 'Laravel Repository Service',
       repo: 'https://github.com/refinaldy/laravel-repository-service',
