@@ -18,13 +18,27 @@
   ],
   "require": {
     "php": "^8.1",
+    "illuminate/console": "^10.0|^11.0",
     "illuminate/database": "^10.0|^11.0",
     "illuminate/support": "^10.0|^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.0|^9.0",
+    "phpunit/phpunit": "^10.0|^11.0"
   },
   "autoload": {
     "psr-4": {
       "Refinaldy\\RepositoryService\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Refinaldy\\RepositoryService\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
   },
   "extra": {
     "laravel": {
@@ -34,5 +48,8 @@
     }
   },
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  }
 }
